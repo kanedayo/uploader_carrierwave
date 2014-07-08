@@ -23,13 +23,17 @@ rake db:migrate
 ```
 
 ```
- # app/model/avatar.rb
+ # app/uploaders/avatar_uploader.rb
  class AvatarUploader < CarrierWave::Uploader::Base
    include CarrierWave::RMagick
    #include CarrierWave::MiniMagick
  
    storage :file
  
+   def default_url
+     ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+   end
+
    version :thumb do
      process :resize_to_fill => [50,50]
    end
