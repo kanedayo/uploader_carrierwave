@@ -52,7 +52,7 @@ rake db:migrate
  # app/controllers/users_controller.rb
   private
     def user_params
-      params.require(:user).permit(:name,:avatar)
+      params.require(:user).permit(:name,:avatar,:remove_avatar)
     end
 ```
 
