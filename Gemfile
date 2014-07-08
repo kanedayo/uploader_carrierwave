@@ -43,3 +43,7 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+#gem 'rmagick', require: 'RMagick'
+gem 'mini_magick'
+gem 'carrierwave'
