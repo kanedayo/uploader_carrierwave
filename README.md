@@ -86,14 +86,20 @@ rake db:migrate
 ```
 
 #■FAQ
-*「ActiveRecord::PendingMigrationError 」
- rake db:migrateのし忘れ。。。
+##「ActiveRecord::PendingMigrationError 」
 
-*「Carrierwave undefined method `avatar_changed?' for User」
- http://stackoverflow.com/questions/20285552/carrierwave-undefined-method-avatar-changed-for-user
+rake db:migrateのし忘れ。。。
 
-*「stack level too deep」
- 大文字と小文字を区別しないファイルシステム(=windows)で起きるエラーみたい。
- Gemfileで「gem 'rmagick', require: 'RMagick'」でOK。
- http://qiita.com/eleven_2012/items/eb4099555358b770915b
- http://stackoverflow.com/questions/22206350/stack-level-too-deep-when-using-carrierwave-versions
+##「Carrierwave undefined method `avatar_changed?' for User」
+
+http://stackoverflow.com/questions/20285552/carrierwave-undefined-method-avatar-changed-for-user
+
+##「stack level too deep」
+
+大文字と小文字を区別しないファイルシステム(=windows)で起きるエラーみたい。
+
+Gemfileで「gem 'rmagick', require: 'RMagick'」でOK。
+
+http://qiita.com/eleven_2012/items/eb4099555358b770915b
+
+http://stackoverflow.com/questions/22206350/stack-level-too-deep-when-using-carrierwave-versions
