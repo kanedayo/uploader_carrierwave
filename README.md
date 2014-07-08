@@ -1,5 +1,6 @@
 #■アプリ雛形の作成
-```console
+```
+ # console
 rails new uploader_carrierwave
 cd uploader_carrierwave
 vim Gemfile
@@ -21,7 +22,8 @@ rake db:migrate
  # => app/uploaders/avatar_uploader.rb
 ```
 
-``` # app/model/avatar.rb
+```
+ # app/model/avatar.rb
  class AvatarUploader < CarrierWave::Uploader::Base
    include CarrierWave::RMagick
    #include CarrierWave::MiniMagick
@@ -38,25 +40,28 @@ rake db:migrate
  end
 ```
 
-``` # app/models/user.rb
+```
+ # app/models/user.rb
  class User < ActiveRecord::Base
    mount_uploader :avatar, AvatarUploader
    validates :name, presence: true
  end
 ```
 
-``` # app/controllers/users_controller.rb
+```
+ # app/controllers/users_controller.rb
   private
     def user_params
       params.require(:user).permit(:name,:avatar)
     end
 ```
 
-``` # app/views/users/_form.html.erb
+```
+ # app/views/users/_form.html.erb
  # 追加
  <%# form_for @user do |f| %>
  <%= form_for @user, :html => {:multipart => true} do |f| %>
-# 追加
+ # 追加
    <div class="field">
      <%= f.label :avatar %><br/>
      <% if @user.avatar? %>
@@ -68,25 +73,27 @@ rake db:migrate
    </div>
 ```
 
-``` # app/views/users/show.html.erb
+```
+ # app/views/users/show.html.erb
  # 追加(抜粋)
  <% image_tag @user.avater %>
 ```
 
-``` # app/views/users/show.html.erb
+```
+ # app/views/users/show.html.erb
  # 追加(抜粋)
  <%= image_tag user.avatar.thumb %>
 ```
 
 #■FAQ
 *「ActiveRecord::PendingMigrationError 」
-rake db:migrateのし忘れ。。。
+ rake db:migrateのし忘れ。。。
 
 *「Carrierwave undefined method `avatar_changed?' for User」
-http://stackoverflow.com/questions/20285552/carrierwave-undefined-method-avatar-changed-for-user
+ http://stackoverflow.com/questions/20285552/carrierwave-undefined-method-avatar-changed-for-user
 
 *「stack level too deep」
-大文字と小文字を区別しないファイルシステム(=windows)で起きるエラーみたい。
-Gemfileで「gem 'rmagick', require: 'RMagick'」でOK。
-http://qiita.com/eleven_2012/items/eb4099555358b770915b
-http://stackoverflow.com/questions/22206350/stack-level-too-deep-when-using-carrierwave-versions
+ 大文字と小文字を区別しないファイルシステム(=windows)で起きるエラーみたい。
+ Gemfileで「gem 'rmagick', require: 'RMagick'」でOK。
+ http://qiita.com/eleven_2012/items/eb4099555358b770915b
+ http://stackoverflow.com/questions/22206350/stack-level-too-deep-when-using-carrierwave-versions
