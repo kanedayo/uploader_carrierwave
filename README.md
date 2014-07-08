@@ -52,7 +52,7 @@ rake db:migrate
  # app/controllers/users_controller.rb
   private
     def user_params
-      params.require(:user).permit(:name,:avatar,:remove_avatar)
+      params.require(:user).permit(:name,:avatar,:remove_avatar,:remote_avatar_url)
     end
 ```
 
@@ -67,9 +67,10 @@ rake db:migrate
      <% if @user.avatar? %>
        <%= image_tag @user.avatar.thumb %>
        <%= f.hidden_field :avatar_cache if @user.avatar_cache %>
-     <label><%= f.check_box :remove_avatar %>Remove avatar</label>
+     <label><%= f.check_box :remove_avatar %>Remove avatar</label><br/>
      <% end %>
-     <%= f.file_field :avatar %><br/>
+     URL:<%= f.text_field :remote_avatar_url %><br/>
+     File:<%= f.file_field :avatar %><br/>
    </div>
 ```
 
